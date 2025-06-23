@@ -1,4 +1,4 @@
-package roomescape.dto;
+package roomescape.dto.response;
 
 import static roomescape.common.LocalTimeUtils.truncatedLocalTimeByMinutes;
 
@@ -8,8 +8,9 @@ import roomescape.domain.Reservation;
 public record TotalReservationRetrieval(Long id, String name, String date, String time) {
 
     public static TotalReservationRetrieval from(Reservation reservation) {
-        LocalTime truncatedLocalTime = truncatedLocalTimeByMinutes(reservation.getTime());
-        return new TotalReservationRetrieval(reservation.getId(), reservation.getName(), reservation.getDate().toString(),
+        LocalTime truncatedLocalTime = truncatedLocalTimeByMinutes(reservation.getTime().getTime());
+        return new TotalReservationRetrieval(reservation.getId(), reservation.getName().getName(),
+                reservation.getDate().getDate().toString(),
                 truncatedLocalTime.toString());
     }
 }
