@@ -8,6 +8,6 @@ public record ReservationPreservationResponse(Long id, String name, LocalDate da
 
     public static ReservationPreservationResponse from(final Reservation reservation) {
         return new ReservationPreservationResponse(reservation.getId(), reservation.getName().getName(),
-                reservation.getDate().getDate(), reservation.getTime().getTime());
+                reservation.getDate().getDate(), reservation.getTime().getStartAt());
     }
 }

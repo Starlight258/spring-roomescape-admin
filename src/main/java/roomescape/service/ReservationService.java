@@ -17,17 +17,17 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
+    public ReservationPreservationResponse save(final ReservationPreservationRequest request) {
+        Reservation savedReservation = reservationRepository.save(
+                new Reservation(request.name(), request.date(), request.time()));
+        return ReservationPreservationResponse.from(savedReservation);
+    }
+
     public List<TotalReservationRetrieval> findAll() {
         List<Reservation> reservations = reservationRepository.findAll();
         return reservations.stream()
                 .map(TotalReservationRetrieval::from)
                 .toList();
-    }
-
-    public ReservationPreservationResponse save(final ReservationPreservationRequest request) {
-        Reservation savedReservation = reservationRepository.save(
-                new Reservation(request.name(), request.date(), request.time()));
-        return ReservationPreservationResponse.from(savedReservation);
     }
 
     public void remove(final Long reservationId) {

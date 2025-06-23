@@ -8,7 +8,7 @@ import roomescape.domain.Reservation;
 public record TotalReservationRetrieval(Long id, String name, String date, String time) {
 
     public static TotalReservationRetrieval from(Reservation reservation) {
-        LocalTime truncatedLocalTime = truncatedLocalTimeByMinutes(reservation.getTime().getTime());
+        LocalTime truncatedLocalTime = truncatedLocalTimeByMinutes(reservation.getTime().getStartAt());
         return new TotalReservationRetrieval(reservation.getId(), reservation.getName().getName(),
                 reservation.getDate().getDate().toString(),
                 truncatedLocalTime.toString());
