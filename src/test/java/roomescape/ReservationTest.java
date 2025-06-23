@@ -3,6 +3,7 @@ package roomescape;
 import static org.hamcrest.Matchers.is;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,16 +38,33 @@ public class ReservationTest {
     @Test
     void saveReservations() {
         RestAssured.given().log().all()
-                .contentType("application/json")
+                .contentType(ContentType.JSON)
                 .body(new ReservationPreservationRequest("mint", LocalDate.now(), LocalTime.NOON))
                 .when().post("/reservations")
                 .then().log().all()
-                .statusCode(201);
+                .statusCode(201)
+                .body("id", is(1));
 
         RestAssured.given().log().all()
                 .when().get("/reservations")
                 .then().log().all()
                 .statusCode(200)
                 .body("size()", is(1));
+    }
+
+    @Test
+    void deleteReservation() {
+        saveReservations();
+
+        RestAssured.given().log().all()
+                .when().delete("/reservations/1")
+                .then().log().all()
+                .statusCode(204);
+
+        RestAssured.given().log().all()
+                .when().get("/reservations")
+                .then().log().all()
+                .statusCode(200)
+                .body("size()", is(0));
     }
 }

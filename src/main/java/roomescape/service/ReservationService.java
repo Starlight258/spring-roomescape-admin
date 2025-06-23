@@ -25,7 +25,12 @@ public class ReservationService {
     }
 
     public ReservationPreservationResponse save(final ReservationPreservationRequest request) {
-        Reservation savedReservation = reservationRepository.save(new Reservation(request.name(), request.date(), request.time()));
+        Reservation savedReservation = reservationRepository.save(
+                new Reservation(request.name(), request.date(), request.time()));
         return ReservationPreservationResponse.from(savedReservation);
+    }
+
+    public void remove(final Long reservationId) {
+        reservationRepository.deleteById(reservationId);
     }
 }
