@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalTime;
+import roomescape.common.TimeUtils;
 
 @Entity
 public class ReservationTime {
@@ -17,8 +18,8 @@ public class ReservationTime {
     @Column(name = "start_at", nullable = false)
     private LocalTime startAt;
 
-    public ReservationTime(final LocalTime startAt) {
-        this.startAt = startAt;
+    public ReservationTime(final String startAt) {
+        this.startAt = TimeUtils.parseLocalTime(startAt);
     }
 
     public ReservationTime() {

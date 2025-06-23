@@ -9,8 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Entity
 public class Reservation {
@@ -35,10 +33,10 @@ public class Reservation {
         this.time = time;
     }
 
-    public Reservation(final String name, final LocalDate date, final LocalTime time) {
+    public Reservation(final String name, final String date, final ReservationTime time) {
         this.name = new ReservationName(name);
         this.date = new ReservationDate(date);
-        this.time = new ReservationTime(time);
+        this.time = time;
     }
 
     protected Reservation() {

@@ -1,6 +1,6 @@
 package roomescape.dto.response;
 
-import static roomescape.common.LocalTimeUtils.truncatedLocalTimeByMinutes;
+import static roomescape.common.TimeUtils.truncatedLocalTimeByMinutes;
 
 import java.time.LocalTime;
 import roomescape.domain.ReservationTime;
