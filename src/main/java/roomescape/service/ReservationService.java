@@ -3,7 +3,7 @@ package roomescape.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import roomescape.domain.Reservation;
-import roomescape.dto.FindAllReservation;
+import roomescape.dto.TotalReservationRetrieval;
 import roomescape.repository.ReservationRepository;
 
 @Service
@@ -15,10 +15,10 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public List<FindAllReservation> findAll() {
+    public List<TotalReservationRetrieval> findAll() {
         List<Reservation> reservations = reservationRepository.findAll();
         return reservations.stream()
-                .map(FindAllReservation::from)
+                .map(TotalReservationRetrieval::from)
                 .toList();
     }
 }
