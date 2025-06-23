@@ -17,7 +17,7 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public ReservationPreservationResponse save(final ReservationPreservationRequest request) {
+    public ReservationPreservationResponse create(final ReservationPreservationRequest request) {
         Reservation savedReservation = reservationRepository.save(
                 new Reservation(request.name(), request.date(), request.time()));
         return ReservationPreservationResponse.from(savedReservation);

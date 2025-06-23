@@ -27,9 +27,9 @@ public class ReservationTimeController {
     }
 
     @PostMapping
-    public ResponseEntity<ReservationTimePreservationResponse> save(
+    public ResponseEntity<ReservationTimePreservationResponse> create(
             final @RequestBody ReservationTimePreservationRequest request) {
-        ReservationTimePreservationResponse response = reservationTimeService.save(request);
+        ReservationTimePreservationResponse response = reservationTimeService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

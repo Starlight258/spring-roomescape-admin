@@ -25,16 +25,16 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
+    @PostMapping
+    public ResponseEntity<ReservationPreservationResponse> create(
+            final @RequestBody ReservationPreservationRequest request) {
+        ReservationPreservationResponse response = reservationService.create(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @GetMapping
     public List<TotalReservationRetrieval> findAll() {
         return reservationService.findAll();
-    }
-
-    @PostMapping
-    public ResponseEntity<ReservationPreservationResponse> save(
-            final @RequestBody ReservationPreservationRequest request) {
-        ReservationPreservationResponse response = reservationService.save(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @DeleteMapping("/{id}")
